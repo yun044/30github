@@ -1,12 +1,17 @@
 import random
 import string
 
-def generate_password(length=12):
-    characters = string.ascii_letters + string.digits + string.punctuation
-    return ''.join(random.choice(characters) for _ in range(length))
+emojis = ["🔥", "💎", "🚀", "🐍", "🔑", "🎲", "⚡", "❤️"]
 
-if __name__ == "__main__":
-    length = int(input("Введите длину пароля: "))
-    print("Сгенерированный пароль:", generate_password(length))
+def generate_password(length=12, use_emojis=True):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(chars) for _ in range(length))
 
+    if use_emojis:
+        emoji = random.choice(emojis)
+        insert_pos = random.randint(0, length - 1)
+        password = password[:insert_pos] + emoji + password[insert_pos:]
 
+    return password
+
+print(generate_password(16))

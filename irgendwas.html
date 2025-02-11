@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Animal</title>
+</head>
+<body>
+
+<button onclick="
+    const change = document.querySelector('.changeStatus');
+if (change.innerHTML === 'Copy') {
+    change.innerHTML = 'saved';
+    } else {
+    change.innerHTML = 'Copy';
+}"
+class="changeStatus">Copy</button>
+
+<button>share</button>
+
+<p>Рассчитай стоимость заказа</p>
+<p>Если сумма заказа выше 50$ - бесплатная доставка</p>
+<p>Меньше 50$ += 10$</p>
+<input placeholder="Введи сумму" class="UserValue">
+<button onclick="calculate()">Рассчет</button>
+<p class="totalValue"></p>
+
+
+
+<script>
+    function calculate() {
+        let inputValue = document.querySelector('.UserValue');
+        let value = Number(inputValue.value);
+
+        if (value<50) {
+            value+=10;
+        }
+
+        document.querySelector('.totalValue').innerHTML = `$${value}`;
+    }
+    console.log(document.querySelector('button'));
+
+    d
+</script>
+</body>
+</html>

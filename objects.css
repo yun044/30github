@@ -1,0 +1,8 @@
+.AddButton {
+    color: white;
+    background-color: green;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 15px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>something</title>
+    <style>
+        .main-button {
+            color: white;
+            background-color: black;
+            border: none;
+            border-radius: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .new-color {
+            background-color: grey;
+            color: black;
+        }
+
+        .submit-button {
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            cursor: pointer;
+        }
+
+        п
+
+
+    </style>
+</head>
+<body>
+
+<button onclick="document.querySelector('.result').innerHTML = 'you chose: heads' ">heads</button>
+<button onclick="document.querySelector('.result').innerHTML = 'you chose: tails' " >tails
+</button>
+<p class="result"></p>
+
+<input class="void" placeholder="input your name" onkeydown="
+        if (event.key === 'Enter') {
+          const text = document.querySelector('.void');
+          document.querySelector('.displayName')
+            .innerHTML = `Your name is: ${text.value}`;
+        }">
+<button onclick="const text = document.querySelector('.void').value;
+document.querySelector('.displayName').innerHTML = `your name is ${text}`" class="submit-button">submit</button>
+<p class="displayName" ></p>
+
+<button class="subscribe-button main-button" onclick="changeButton()">Subscribe</button>
+
+<script>
+    function changeButton() {
+        let change = document.querySelector('.subscribe-button');
+        if (change.innerText === 'Subscribe') {
+            change.innerHTML = 'Subscribed';
+            change.classList.add
+            ('new-color');
+        }  else {
+                change.innerHTML = 'Subscribe';
+                change.classList.remove('new-color');
+            }
+
+    }
+</script>
+
+
+</body>
+</html>

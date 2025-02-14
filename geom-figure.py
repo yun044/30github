@@ -28,8 +28,8 @@ ax.add_patch(pentagon)
 
 
 
-ax.set_xlim(-2, 12)
-ax.set_ylim(-2, 2)
+ax.set_xlim(-2, 14)
+ax.set_ylim(-2, 4)
 ax.set_aspect('equal')
 plt.grid(True)
 plt.show()

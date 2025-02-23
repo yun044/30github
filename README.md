@@ -101,3 +101,4 @@
 98. Teaching my toothbrush to dance  
 99. Randomly narrating my life like a documentary  
 100. Loving humanity so much that I made this list!
+101. Big juicy melons

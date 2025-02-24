@@ -44,7 +44,7 @@
 41. Complimenting the wind for its performance  
 42. Asking my pillow how its day was  
 43. Watching silent movies with dramatic commentary  
-44. Shouting "PLOT TWIST" randomly in conversations  
+44. Playing Football with my friends
 45. Blinking in Morse code to confuse people  
 46. Clapping when my toast pops out of the toaster  
 47. Practicing my autograph for when I’m famous  
@@ -75,7 +75,7 @@
 72. Practicing my autograph on bananas  
 73. Building sandcastles in my bathtub  
 74. Roleplaying as a traffic light when crossing the street  
-75. Convincing my dog to pay rent (unsuccessfully)  
+75. Watching stupid-motivating video on youTube 
 76. Eating imaginary soup with an invisible spoon  
 77. Trying to count all the grains of rice in my meal  
 78. Attempting to handshake birds mid-flight  
@@ -96,9 +96,9 @@
 93. Timing how long I can stand on one foot  
 94. Drawing mustaches on magazine models  
 95. Wondering if the ceiling ever gets bored of looking at me  
-96. Watching horror movies and giving the characters bad advice  
+96. Loving cuties japanese girls
 97. Creating theme songs for everyday actions  
 98. Teaching my toothbrush to dance  
 99. Randomly narrating my life like a documentary  
 100. Loving humanity so much that I made this list!
-101. Big juicy melons
+

@@ -1,8 +1,8 @@
 class SmartHomeDevice {
-    protected String deviceName;
-    protected boolean isOn;
-    protected int powerLevel;
-    protected String location;
+    private String deviceName;
+    private boolean isOn;
+    private int powerLevel;
+    private String location;
 
     public SmartHomeDevice(String name, String loc) {
         this.deviceName = name;
@@ -11,38 +11,73 @@ class SmartHomeDevice {
         this.location = loc;
     }
 
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public void setOn(boolean on) {
+        isOn = on;
+    }
+
+    public int getPowerLevel() {
+        return powerLevel;
+    }
+
+    public void setPowerLevel(int powerLevel) {
+        if (powerLevel < 0) powerLevel = 0;
+        if (powerLevel > 100) powerLevel = 100;
+        this.powerLevel = powerLevel;
+        System.out.println("\n[Действие] " + getDeviceName() + " в локации '" + getLocation() + "' установлен уровень мощности: " + powerLevel + "%.");
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+        System.out.println("\n[Действие] " + getDeviceName() + " перемещено в локацию '" + location + "'.");
+    }
+
     public void turnOn() {
-        isOn = true;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' включено.");
+        if (!isOn()) {
+            setOn(true);
+            System.out.println("\n[Действие] " + getDeviceName() + " в локации '" + getLocation() + "' включено.");
+        } else {
+            System.out.println("\n[Предупреждение] " + getDeviceName() + " уже включено.");
+        }
     }
 
     public void turnOff() {
-        isOn = false;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' выключено.");
-    }
-
-    public void setPowerLevel(int level) {
-        if (level < 0) level = 0;
-        if (level > 100) level = 100;
-        powerLevel = level;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' установлен уровень мощности: " + powerLevel + "%.");
+        if (isOn()) {
+            setOn(false);
+            System.out.println("\n[Действие] " + getDeviceName() + " в локации '" + getLocation() + "' выключено.");
+        } else {
+            System.out.println("\n[Предупреждение] " + getDeviceName() + " уже выключено.");
+        }
     }
 
     public void showStatus() {
         System.out.println("\n======= Статус устройства =======");
-        System.out.println("Устройство: \t" + deviceName);
-        System.out.println("Локация: \t" + location);
-        System.out.println("Состояние: \t" + (isOn ? "Включено" : "Выключено"));
-        System.out.println("Уровень мощности: \t" + powerLevel + "%");
+        System.out.println("Устройство: \t" + getDeviceName());
+        System.out.println("Локация: \t" + getLocation());
+        System.out.println("Состояние: \t" + (isOn() ? "Включено" : "Выключено"));
+        System.out.println("Уровень мощности: \t" + getPowerLevel() + "%");
         System.out.println("===============================\n");
     }
 
     public void moveToLocation(String newLocation) {
-        location = newLocation;
-        System.out.println("\n[Действие] " + deviceName + " перемещено в локацию '" + location + "'.");
+        setLocation(newLocation);
     }
 }
-
 
 class SmartLamp extends SmartHomeDevice {
     private String color;
@@ -54,7 +89,19 @@ class SmartLamp extends SmartHomeDevice {
 
     public void changeColor(String newColor) {
         this.color = newColor;
-        System.out.println("\n[Действие] " + deviceName + " изменил цвет на: " + color);
+        System.out.println("\n[Действие] " + getDeviceName() + " изменил цвет на: " + color);
+    }
+
+    public void changeColor(String newColor, int brightness) {
+        this.color = newColor;
+        setPowerLevel(brightness);
+        System.out.println("\n[Действие] " + getDeviceName() + " изменил цвет на: " + color + " с яркостью: " + brightness + "%");
+    }
+
+    @Override
+    public void turnOn() {
+        super.turnOn();
+        setPowerLevel(50);
     }
 
     @Override
@@ -64,7 +111,6 @@ class SmartLamp extends SmartHomeDevice {
         System.out.println("===============================\n");
     }
 }
-
 
 class SmartFridge extends SmartHomeDevice {
     private int temperature;
@@ -76,22 +122,28 @@ class SmartFridge extends SmartHomeDevice {
         this.items = 0;
     }
 
+    @Override
+    public void turnOn() {
+        super.turnOn();
+        setTemperature(4);
+    }
+
     public void setTemperature(int temp) {
         this.temperature = Math.max(-20, Math.min(temp, 10));
-        System.out.println("\n[Действие] " + deviceName + " установлена температура: " + temperature + "°C.");
+        System.out.println("\n[Действие] " + getDeviceName() + " установлена температура: " + temperature + "°C.");
     }
 
     public void addItems(int quantity) {
         if (quantity > 0) {
             items += quantity;
-            System.out.println("\n[Действие] " + deviceName + " добавлено продуктов: " + quantity + ". Теперь их: " + items);
+            System.out.println("\n[Действие] " + getDeviceName() + " добавлено продуктов: " + quantity + ". Теперь их: " + items);
         } else {
-            System.out.println("\n[Ошибка] " + deviceName + " нельзя добавить отрицательное количество продуктов.");
+            System.out.println("\n[Ошибка] " + getDeviceName() + " нельзя добавить отрицательное количество продуктов.");
         }
     }
 
     public void checkItems() {
-        System.out.println("\n[Информация] " + deviceName + " в локации '" + location + "' содержит продуктов: " + items);
+        System.out.println("\n[Информация] " + getDeviceName() + " в локации '" + getLocation() + "' содержит продуктов: " + items);
     }
 
     @Override
@@ -99,44 +151,6 @@ class SmartFridge extends SmartHomeDevice {
         super.showStatus();
         System.out.println("Температура: \t" + temperature + "°C");
         System.out.println("Количество продуктов: \t" + items);
-        System.out.println("===============================\n");
-    }
-}
-
-
-class SmartPet extends SmartHomeDevice {
-    private int happinessLevel;
-    private int hungerLevel;
-
-    public SmartPet(String name, String loc) {
-        super(name, loc);
-        this.happinessLevel = 50;
-        this.hungerLevel = 50;
-    }
-
-    public void feed() {
-        if (hungerLevel > 0) {
-            hungerLevel -= 20;
-            if (hungerLevel < 0) hungerLevel = 0;
-            System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' покормлен.");
-            System.out.println("Текущий уровень голода: " + hungerLevel + "%\n");
-        } else {
-            System.out.println("\n[Предупреждение] " + deviceName + " не голоден!\n");
-        }
-    }
-
-    public void play() {
-        happinessLevel += 30;
-        if (happinessLevel > 100) happinessLevel = 100;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' поиграл.");
-        System.out.println("Текущий уровень счастья: " + happinessLevel + "%\n");
-    }
-
-    @Override
-    public void showStatus() {
-        super.showStatus();
-        System.out.println("Уровень счастья: \t" + happinessLevel + "%");
-        System.out.println("Уровень голода: \t" + hungerLevel + "%");
         System.out.println("===============================\n");
     }
 }
@@ -152,18 +166,50 @@ class SmartVehicle extends SmartHomeDevice {
         this.speed = 0;
     }
 
+    public int getFuelLevel() {
+        return fuelLevel;
+    }
+
+    private void setFuelLevel(int fuelLevel) {
+        this.fuelLevel = Math.max(0, Math.min(fuelLevel, 100));
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    private void setSpeed(int speed) {
+        this.speed = Math.max(0, Math.min(speed, 220));
+    }
+
     public void accelerate(int increment) {
-        speed += increment;
-        if (speed > 220) speed = 220;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' ускорился.");
-        System.out.println("Текущая скорость: " + speed + " км/ч\n");
+        accelerate(increment, 5);
+    }
+
+    public void accelerate(int increment, int fuelConsumption) {
+        if (fuelLevel > 0) {
+            setSpeed(speed + increment);
+            setFuelLevel(fuelLevel - fuelConsumption);
+            System.out.println("\n[Действие] " + getDeviceName() + " ускорился до " + speed + " км/ч.");
+            System.out.println("[Топливо] Уровень топлива: " + fuelLevel + "% (потрачено " + fuelConsumption + "%).");
+        } else {
+            System.out.println("\n[Ошибка] " + getDeviceName() + " закончилось топливо!");
+        }
     }
 
     public void refuel(int amount) {
-        fuelLevel += amount;
-        if (fuelLevel > 100) fuelLevel = 100;
-        System.out.println("\n[Действие] " + deviceName + " в локации '" + location + "' заправлен.");
-        System.out.println("Текущий уровень топлива: " + fuelLevel + "%\n");
+        setFuelLevel(fuelLevel + amount);
+        System.out.println("\n[Действие] " + getDeviceName() + " заправлен. Уровень топлива: " + fuelLevel + "%.");
+    }
+
+    @Override
+    public void turnOn() {
+        if (fuelLevel > 0) {
+            super.turnOn();
+            setSpeed(0);
+        } else {
+            System.out.println("\n[Ошибка] " + getDeviceName() + " не может включиться, так как нет топлива!");
+        }
     }
 
     @Override
@@ -178,50 +224,26 @@ class SmartVehicle extends SmartHomeDevice {
 
 public class Main {
     public static void main(String[] args) {
-        SmartHomeDevice cleaner = new SmartHomeDevice("Пылесос", "Гостиная");
-        cleaner.turnOn();
-        cleaner.setPowerLevel(75);
-        cleaner.showStatus();
-        cleaner.moveToLocation("Спальня");
-        cleaner.setPowerLevel(15);
-        cleaner.turnOff();
-        cleaner.showStatus();
-
         SmartLamp lamp = new SmartLamp("Лампа", "Кухня");
         lamp.turnOn();
         lamp.changeColor("Синий");
+        lamp.changeColor("Красный", 80);
+        lamp.setPowerLevel(80);
         lamp.showStatus();
 
-        SmartFridge fridge = new SmartFridge("Холодильник", "Кухня");
+        SmartFridge fridge = new SmartFridge("Холодильник", "Подвал");
         fridge.turnOn();
         fridge.setTemperature(3);
         fridge.addItems(5);
-        fridge.addItems(3);
-        fridge.checkItems();
-        fridge.moveToLocation("Гостиная");
-        fridge.turnOff();
+        fridge.moveToLocation("Кухня");
         fridge.showStatus();
 
-        SmartPet pet = new SmartPet("Рекс", "Улица");
-        pet.turnOn();
-        pet.feed();
-        pet.play();
-        pet.showStatus();
-        pet.moveToLocation("Дом");
-        pet.turnOff();
-        pet.showStatus();
-
-        SmartVehicle car = new SmartVehicle("Tesla", "Парковка");
+        SmartVehicle car = new SmartVehicle("BMW", "Парковка");
+        car.setDeviceName("Mercedes");
         car.turnOn();
         car.accelerate(100);
+        car.accelerate(50, 10);
         car.refuel(30);
-        car.showStatus();
-        car.moveToLocation("Трасса");
         car.showStatus();
     }
 }
-
-
-
-
-

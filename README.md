@@ -1,4 +1,4 @@
-### Hello world, I am Adilet Toktoberdiev️. I am 21 years old. I love humanity.
+### Hello World, I am Adilet(Yun). I am 21 years old. I love humanity!..
 
 ### 📝 I also love:
 1. The smell of wet cement  
@@ -100,5 +100,5 @@
 97. Creating theme songs for everyday actions  
 98. Teaching my toothbrush to dance  
 99. Randomly narrating my life like a documentary  
-100. Loving humanity so much that I made this list!
+100. Loving humanity so much that I made this list!!!
 
